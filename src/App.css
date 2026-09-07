@@ -1,20 +1,40 @@
 .app {
   background: #fff;
   border-radius: 28px;
-  padding: 2rem 1.5rem 2.5rem;
+  padding: 2.5rem 2.75rem;
   box-shadow: 0 4px 40px rgba(30, 120, 180, 0.10);
   position: relative;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  position: sticky;
+  top: 2rem;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  min-width: 0;
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 0.8rem;
-  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .app-title {
   font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: #1a4f72;
   letter-spacing: -0.5px;
   line-height: 1.1;
@@ -27,11 +47,7 @@
   font-weight: 400;
 }
 
-.header-controls {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
+.streak-wrap { align-self: flex-start; }
 
 .sound-btn {
   background: none;
@@ -46,39 +62,11 @@
   justify-content: center;
   transition: all 0.18s;
   opacity: 0.6;
+  flex-shrink: 0;
 }
 
 .sound-btn.active { opacity: 1; border-color: #3b9edd; }
 .sound-btn:hover { background: #f0f8ff; }
-
-.tabs {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 1.2rem;
-  background: #f0f8ff;
-  border-radius: 14px;
-  padding: 4px;
-}
-
-.tab-btn {
-  flex: 1;
-  border: none;
-  background: transparent;
-  border-radius: 11px;
-  padding: 9px 0;
-  font-size: 14px;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
-  color: #7aabcc;
-  cursor: pointer;
-  transition: all 0.18s;
-}
-
-.tab-btn.active {
-  background: #fff;
-  color: #1a4f72;
-  box-shadow: 0 1px 6px rgba(30, 120, 180, 0.12);
-}
 
 .section-label {
   font-size: 11px;
@@ -93,7 +81,6 @@
   background: #f0f8ff;
   border-radius: 18px;
   padding: 1.2rem 1.2rem 1rem;
-  margin-bottom: 1.4rem;
 }
 
 .goal-row { display: flex; align-items: center; gap: 10px; }
@@ -153,7 +140,6 @@
   border-radius: 16px;
   padding: 1rem 1.2rem;
   text-align: center;
-  margin-bottom: 1.2rem;
   animation: popIn 0.4s cubic-bezier(.36, 1.56, .64, 1);
 }
 
@@ -170,7 +156,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1.4rem;
+  background: #f7fbff;
+  border: 1px solid #d4ecf7;
+  border-radius: 18px;
+  padding: 1.4rem 1.2rem;
 }
 
 .glass-wrap {
@@ -181,28 +170,28 @@
 
 .stats-row {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
-  margin-bottom: 0.6rem;
+  margin-top: 0.9rem;
 }
 
 .stat-card {
   flex: 1;
   background: #f0f8ff;
   border-radius: 14px;
-  padding: 0.85rem 0.5rem;
+  padding: 0.75rem 0.3rem;
   text-align: center;
 }
 
 .stat-value {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 600;
   color: #1a4f72;
   line-height: 1;
 }
 
 .stat-label {
-  font-size: 11px;
+  font-size: 10px;
   color: #7aabcc;
   margin-top: 3px;
   font-weight: 500;
@@ -228,20 +217,20 @@
   color: #7aabcc;
   margin-top: 5px;
   font-weight: 500;
+  text-align: center;
 }
 
 .log-section {
   background: #f0f8ff;
   border-radius: 18px;
-  padding: 1.2rem;
-  margin-bottom: 1.2rem;
+  padding: 1.2rem 1.4rem;
 }
 
 .log-amount-row {
   display: flex;
-  gap: 8px;
+  gap: 14px;
   align-items: center;
-  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
 }
 
 .amount-btn {
@@ -266,9 +255,9 @@
 .amount-btn:active { transform: scale(0.94); }
 
 .amount-display {
-  flex: 1;
+  min-width: 84px;
   text-align: center;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 600;
   color: #1a4f72;
 }
@@ -282,15 +271,14 @@
 .quick-amounts {
   display: flex;
   gap: 6px;
-  margin-bottom: 0.9rem;
+  flex-wrap: wrap;
 }
 
 .quick-btn {
-  flex: 1;
   border: 1.5px solid #b8dff0;
   background: #fff;
   border-radius: 10px;
-  padding: 7px 4px;
+  padding: 8px 12px;
   font-size: 12px;
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
@@ -307,24 +295,37 @@
 }
 
 .log-btn {
-  width: 100%;
+  margin-left: auto;
   background: #1a7ac8;
   color: #fff;
   border: none;
   border-radius: 14px;
-  padding: 14px;
+  padding: 12px 22px;
   font-size: 15px;
   font-family: 'DM Sans', sans-serif;
   font-weight: 600;
   cursor: pointer;
   letter-spacing: 0.2px;
+  white-space: nowrap;
   transition: background 0.18s, transform 0.1s;
 }
 
 .log-btn:hover  { background: #155fa0; }
 .log-btn:active { transform: scale(0.98); }
 
-.history-section { margin-bottom: 0.5rem; }
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+  align-items: start;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid #e3f1fa;
+  border-radius: 18px;
+  padding: 1.2rem;
+}
 
 .history-header {
   display: flex;
@@ -349,7 +350,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-height: 200px;
+  max-height: 420px;
   overflow-y: auto;
   padding-right: 2px;
 }
@@ -395,7 +396,11 @@
   padding: 1.2rem 0;
 }
 
-.past-section { margin-bottom: 0.5rem; }
+.past-list {
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
 
 .past-day-card {
   background: #f7fbff;
@@ -433,4 +438,14 @@
   border-radius: 20px;
   padding: 2px 9px;
   margin-top: 3px;
+}
+
+@media (max-width: 880px) {
+  .app { grid-template-columns: 1fr; padding: 2rem 1.5rem 2.5rem; }
+  .sidebar { position: static; }
+}
+
+@media (max-width: 620px) {
+  .panels { grid-template-columns: 1fr; }
+  .log-btn { margin-left: 0; width: 100%; }
 }
